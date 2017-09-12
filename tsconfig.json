@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "alwaysStrict": true,
+      "module": "commonjs",
+      "target": "es2015",
+      "noImplicitAny": false,
+      "sourceMap": false
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
