@@ -5,9 +5,15 @@ var router = express.Router();
 
 const exercisesController = new ExercisesController();
 
-/* GET users listing. */
-router.get('/', exercisesController.getExercises);
-router.get('/:exerciseId', exercisesController.getExercise);
-router.post('/', exercisesController.createExercise);
+router
+    .route('/')
+    .get(exercisesController.getExercises)
+    .post(exercisesController.createExercise);
 
+router
+    .route('/:exerciseId')
+    .get(exercisesController.getExercise)
+    .put(exercisesController.updateExercise)
+    .delete(exercisesController.deleteExercise);
 export = router;
+

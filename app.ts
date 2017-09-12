@@ -7,7 +7,6 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 require('./app_server/models/db');
-import * as index from './app_server/routes/index';
 import * as programs from './app_server/routes/programs';
 import * as exercises from './app_server/routes/exercises';
 

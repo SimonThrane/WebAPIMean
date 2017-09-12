@@ -14,6 +14,23 @@ export class ProgramsController {
             });
     }
 
+    deleteProgram(req: any, res: any, next: any) {
+        let programId = req.params.programId;
+        //fetch from db based on id
+        if(programId){
+            Programs.findByIdAndRemove(programId)
+                .exec((err, program) => {
+                        if(err){
+                            res.status(404).json(err);
+                        }
+                        res.status(204).json(null);
+                    }
+                );
+        }else{
+            res.status(404).json({"message": "No programId"});
+        }
+    }
+
     getProgram(req: any, res: any, next: any) {
         let programId = req.params.programId;
         //fetch from db based on id

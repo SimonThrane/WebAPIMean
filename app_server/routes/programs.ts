@@ -5,10 +5,16 @@ var router = express.Router();
 
 const programsController = new ProgramsController();
 
-/* GET users listing. */
-router.get('/', programsController.getPrograms);
-router.get('/:programId', programsController.getProgram);
-router.post('/', programsController.createProgram);
-router.put('/:programId', programsController.updateProgram);
+router
+    .route('/')
+    .get(programsController.getPrograms)
+    .delete(programsController.deleteProgram)
+    .post(programsController.createProgram);
+
+router
+    .route('/:programId')
+    .get(programsController.getProgram)
+    .put(programsController.updateProgram);
+
 
 export = router;
