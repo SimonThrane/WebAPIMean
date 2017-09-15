@@ -5,7 +5,9 @@
   "scripts": {
     "start": "npm run tsc && node ./bin/www",
     "deploy": "npm install && npm run tsc && node ./bin/www",
-    "tsc": "tsc"
+    "watch": "npm run tsc && npm run nodemon ./bin/www",
+    "tsc": "tsc",
+    "nodemon": "nodemon"
   },
   "engines": {
     "node": "^6.11.1",
