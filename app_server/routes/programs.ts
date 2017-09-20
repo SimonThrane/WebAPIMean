@@ -8,12 +8,12 @@ const programsController = new ProgramsController();
 router
     .route('/')
     .get(programsController.getPrograms)
-    .delete(programsController.deleteProgram)
     .post(programsController.createProgram);
 
 router
     .route('/:programId')
     .get(programsController.getProgram)
+    .delete(programsController.deleteProgram)    
     .put(programsController.updateProgram);
 
 

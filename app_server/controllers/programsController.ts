@@ -16,6 +16,7 @@ export class ProgramsController {
 
     deleteProgram(req: any, res: any, next: any) {
         let programId = req.params.programId;
+        console.log(programId);
         //fetch from db based on id
         if(programId){
             Programs.findByIdAndRemove(programId)
@@ -56,7 +57,9 @@ export class ProgramsController {
         //Add exercise id to program
         let programId = req.params.programId;
         let update = req.body;
+        console.log(update);
         Programs.update({ _id: programId },
+            { $push: { exercises: { $each: update.exercises } } },          
             update,
             (program) => {
                 res.status(200).send(program);
