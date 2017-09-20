@@ -59,7 +59,7 @@ export class ProgramsController {
         let update = req.body;
         console.log(update);
         Programs.update({ _id: programId },
-            { $push: { exercises: { $each: update.exercises } } },          
+            { $addToSet: { exercises: { $each: update.exercises } } },          
             update,
             (program) => {
                 res.status(200).send(program);
