@@ -2,6 +2,7 @@ declare var require, module, process;
 import { Exercise } from "../../domain/exercise";
 var mongoose = require('mongoose');
 var Exercisedb = mongoose.model('Exercise');
+var ProgramDb = mongoose.model('Program');
 export class ExercisesController {
 
     getExercises(req: any, res: any, next: any) {
@@ -77,8 +78,19 @@ export class ExercisesController {
         let exerciseId = req.params.exerciseId;
         //fetch from db based on id
         if(exerciseId){
+            ProgramDb.update(
+                {}, 
+                { $pull: { exercises:  exerciseId } }, 
+                {multi: true}, 
+            ).exec((err, exercise) => {
+                if(err){
+                    res.status(404).json(err);
+                }
+            }
+        );;
+         
             Exercisedb.findByIdAndRemove(exerciseId)
-                .exec((err, program) => {
+                .exec((err, exercise) => {
                         if(err){
                             res.status(404).json(err);
                         }
