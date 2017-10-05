@@ -9,6 +9,8 @@ import * as bodyParser from 'body-parser';
 require('./app_server/models/db');
 import * as programs from './app_server/routes/programs';
 import * as exercises from './app_server/routes/exercises';
+import * as users from './app_server/routes/users'; 
+import * as passport from 'passport';
 
 var app = express();
 
@@ -26,6 +28,15 @@ app.use('/exercises' as any, exercises as any);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   next(err);
+});
+
+// error handlers
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
 });
 
 // error handler
