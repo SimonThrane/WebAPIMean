@@ -23,8 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/programs' as any, programs as any);
-app.use('/api/exercises' as any, exercises as any);
+app.use('/programs' as any, programs as any);
+app.use('/exercises' as any, exercises as any);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -34,12 +34,12 @@ app.use(function(req, res, next) {
 
 // error handlers
 // Catch unauthorised errors
-app.use(function (err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401);
-    res.json({"message" : err.name + ": " + err.message});
-  }
-});
+// app.use(function (err, req, res, next) {
+//   if (err.name === 'UnauthorizedError') {
+//     res.status(401);
+//     res.json({"message" : err.name + ": " + err.message});
+//   }
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
