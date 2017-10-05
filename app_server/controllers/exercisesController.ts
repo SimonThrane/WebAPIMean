@@ -40,7 +40,7 @@ export class ExercisesController {
         }
         let exerciseId = req.params.exerciseId;
         console.log(req.body);
-        let update = req.body;        
+        let update = req.body;
         Exercisedb.update({ _id: exerciseId },
             update,
             (exercise) => {
@@ -79,16 +79,16 @@ export class ExercisesController {
         //fetch from db based on id
         if(exerciseId){
             ProgramDb.update(
-                {}, 
-                { $pull: { exercises:  exerciseId } }, 
-                {multi: true}, 
+                {},
+                { $pull: { exercises:  exerciseId } },
+                {multi: true},
             ).exec((err, exercise) => {
                 if(err){
                     res.status(404).json(err);
                 }
             }
         );;
-         
+
             Exercisedb.findByIdAndRemove(exerciseId)
                 .exec((err, exercise) => {
                         if(err){

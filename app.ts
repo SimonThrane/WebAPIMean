@@ -6,6 +6,7 @@ import * as favicon from 'serve-favicon';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 require('./app_server/models/db');
 import * as programs from './app_server/routes/programs';
 import * as exercises from './app_server/routes/exercises';
@@ -17,12 +18,13 @@ var app = express();
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/programs' as any, programs as any);
-app.use('/exercises' as any, exercises as any);
+app.use('/api/programs' as any, programs as any);
+app.use('/api/exercises' as any, exercises as any);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
