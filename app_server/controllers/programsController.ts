@@ -7,6 +7,7 @@ var Programs = mongoose.model('Program');
 
 export class ProgramsController {
     getPrograms(req: any, res: any, next: any) {
+		console.log(req);
         //Fetch programs from db
         Programs.find()
             .exec((err, programs) => {
@@ -59,7 +60,7 @@ export class ProgramsController {
         let update = req.body;
         console.log(update);
         Programs.update({ _id: programId },
-            { $addToSet: { exercises: { $each: update.exercises } } },          
+            { $addToSet: { exercises: { $each: update.exercises } } },
             update,
             (program) => {
                 res.status(200).send(program);

@@ -35,7 +35,7 @@ const programSchema = module.exports.programSchema = new mongoose.Schema({
     create_date: Date
 });
 
-const userSchema = module.exports.userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -47,7 +47,7 @@ const userSchema = module.exports.userSchema = new mongoose.Schema({
     },
     hash: String,
     salt: String,
-    programs: [] 
+    programs: []
 });
 
 userSchema.methods.setPassword = function(password){
@@ -67,3 +67,4 @@ userSchema.methods.setPassword = function(password){
 //     }, process.env.JWT_SECRET); // DO NOT KEEP YOUR SECRET IN THE CODE!
 // };
 
+module.exports.userSchema = userSchema;
