@@ -36,7 +36,6 @@ export class UserController {
 				.json({ "message": "All fields required" });
 			return;
 		}
-
 		passport.authenticate('local', function (err, user, info) {
 			let token;
 
@@ -48,13 +47,13 @@ export class UserController {
 
 			if (user) {
 				token = user.generateJwt();
-				res.sendJSONresponse(res, 200, {
+				res.status(200).json({
 					"token": token
 				});
 			} else {
-				res.sendJSONresponse(res, 401, info);
+				res.status(401).json({"Error": "Unauthorized"});
 			}
-		})
+		})(req, res, next);
 	}
 }
 

@@ -76,7 +76,7 @@ userSchema.methods.generateJwt = function () {
 };
 
 userSchema.methods.validPassword = function (password) {
-	const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, digest).toString('hex');
+	const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 128, digest).toString('hex');
 	return this.hash === hash;
 };
 
