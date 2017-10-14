@@ -38,7 +38,7 @@ export class UserController {
 		}
 
 		passport.authenticate('local', function (err, user, info) {
-			var token;
+			let token;
 
 			if (err) {
 				res.status(404)

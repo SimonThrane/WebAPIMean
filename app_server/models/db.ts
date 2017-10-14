@@ -31,7 +31,7 @@ const gracefulShutdown = (msg, callback) => {
   });
 };
 
-// For nodemon restarts                                 
+// For nodemon restarts
 process.once('SIGUSR2', () => {
   gracefulShutdown('nodemon restart', () => {
     process.kill(process.pid, 'SIGUSR2');
@@ -48,7 +48,8 @@ process.on('SIGTERM', () => {
   gracefulShutdown('Heroku app shutdown', () => {
     process.exit(0);
   });
-});   
+});
 
 mongoose.model('Program', models.programSchema);
 mongoose.model('Exercise', models.exerciseSchema);
+mongoose.model('User', models.userSchema);
