@@ -2,19 +2,26 @@ declare var require, module, process;
 import { ProgramsController } from '../controllers/programsController';
 var express = require('express');
 var router = express.Router();
+var jwt = require('express-jwt');
 
 const programsController = new ProgramsController();
 
-router
-    .route('/')
-    .get(programsController.getPrograms)
-    .post(programsController.createProgram);
+let token = "secret";
+if (process.env.NODE_ENV === 'production') {
+	token = process.env.JWT_SECRET;
+}
 
-router
-    .route('/:programId')
-    .get(programsController.getProgram)
-    .delete(programsController.deleteProgram)
-    .put(programsController.updateProgram);
+var auth = jwt({
+	secret: token,
+	userProperty: 'payload'
+});
+
+router.post('/', auth, programsController.createProgram);
+router.get('/', programsController.getPrograms);
+
+router.get('/:programId', auth, programsController.getProgram);
+router.delete('/:programId', auth, programsController.deleteProgram);
+router.put('/:programId', auth, programsController.updateProgram);
 
 
 export = router;

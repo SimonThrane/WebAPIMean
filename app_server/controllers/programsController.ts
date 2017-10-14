@@ -7,7 +7,6 @@ var Programs = mongoose.model('Program');
 
 export class ProgramsController {
     getPrograms(req: any, res: any, next: any) {
-		console.log(req);
         //Fetch programs from db
         Programs.find()
             .exec((err, programs) => {

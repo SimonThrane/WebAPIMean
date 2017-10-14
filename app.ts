@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-app.use('/programs' as any, auth, programs as any);
+app.use('/programs' as any, programs as any);
 app.use('/exercises' as any, auth, exercises as any);
 app.use('/auth' as any, users as any);
 
