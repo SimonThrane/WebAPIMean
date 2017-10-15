@@ -113,7 +113,7 @@ export class ExercisesController {
             time: req.body.time,
             create_date: new Date()
         }, (exercise) => {
-            res.status(200).send(exercise);
+            res.status(200).send({});
         });
     }
 }
