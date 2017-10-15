@@ -41,7 +41,7 @@ export class ProgramsController {
         let promise = new Promise((resolve, reject) => {
             Programs.findById(programId)
                 .exec(function (err, programs) {
-                    programResponse = programs;
+					programResponse = programs;
                     Exercises.find({
                         '_id': { $in: programResponse.exercises }
                     }).exec((err, exercises) => {
@@ -62,7 +62,7 @@ export class ProgramsController {
             { $addToSet: { exercises: { $each: update.exercises } } },
             update,
             (program) => {
-                res.status(200).send(program);
+                res.status(200).send({});
             });
     }
 
@@ -74,7 +74,7 @@ export class ProgramsController {
             exercises: req.body.exercises,
             create_date: new Date()
         }, (program) => {
-            res.status(200).send(program);
+            res.status(200).send({});
         });
     }
 }
