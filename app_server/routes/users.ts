@@ -9,4 +9,5 @@ const ctrlAuth = new UserController();
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
+
 export = router;

@@ -4,10 +4,14 @@ import { Program } from "../../domain/program";
 import { Exercise } from "../../domain/exercise";
 var Exercises = mongoose.model('Exercise');
 var Programs = mongoose.model('Program');
+var Users = mongoose.model('User');
+
 
 export class ProgramsController {
-    getPrograms(req: any, res: any, next: any) {
+
+   getPrograms(req: any, res: any, next: any) {
         //Fetch programs from db
+        console.log("Get programs called");
         Programs.find()
             .exec((err, programs) => {
                 res.send(programs);
@@ -77,4 +81,25 @@ export class ProgramsController {
             res.status(200).send({});
         });
     }
+
+    logActivity(req: any, res: any, next: any) {
+        let activity = req.body;
+        console.log(activity);
+        Users.update({_id: req.payload._id},
+            { $push: { activities: activity  } },
+            (user) => {
+                res.status(200).send({user});
+            });
+    }
+
+    getActivities(req: any, res: any, next: any) {
+            //Fetch Activities related to user from db
+            console.log("Get activities called");
+            Users.findById(req.payload._id)
+                .exec((err, user) => {
+                    console.log(user.activities);
+                    res.send(user.activities);
+                });
+    }
+    
 }

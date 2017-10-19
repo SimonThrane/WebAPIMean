@@ -54,7 +54,7 @@ export class UserController {
 				res.status(401).json({"Error": "Unauthorized"});
 			}
 		})(req, res, next);
-	}
+	} 
 }
 
 

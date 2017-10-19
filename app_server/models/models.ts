@@ -47,7 +47,8 @@ const userSchema = module.exports.userSchema = new mongoose.Schema({
 		required: true
 	},
 	hash: String,
-	salt: String
+	salt: String,
+	activities: []
 });
 
 const digest = 'sha512';
