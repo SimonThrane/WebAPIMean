@@ -24,6 +24,6 @@ router.delete('/:programId', auth, programsController.deleteProgram);
 router.put('/:programId', auth, programsController.updateProgram);
 
 router.post('/logactivity', auth, programsController.logActivity);
-router.post('/activities', auth, programsController.getActivities);
+// router.get('/activities', auth, programsController.getActivities);
 
 export = router;
